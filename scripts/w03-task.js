@@ -55,13 +55,22 @@ document.getElementById('divideNumbers').addEventListener('click', divideNumbers
 
 /* ARRAY METHODS - Functional Programming */
 /* Output Source Array */
+let numArray = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
+
+document.getElementById('array').textContent = numArray;
 
 /* Output Odds Only Array */
+document.getElementById('odds').textContent = numArray.filter(num => num % 2 !== 0);
 
 /* Output Evens Only Array */
+document.getElementById('evens').textContent = numArray.filter(num => num % 2 === 0);
 
 /* Output Sum of Org. Array */
+let ttlSum = numArray.reduce((acc, num) => acc + num, 0);
+document.getElementById('sumOfArray').textContent = ttlSum;
 
 /* Output Multiplied by 2 Array */
+document.getElementById('multiplied').textContent = numArray.map(num => num * 2);
 
 /* Output Sum of Multiplied by 2 Array */
+document.getElementById('sumOfMultiplied').textContent = ttlSum * 2;
