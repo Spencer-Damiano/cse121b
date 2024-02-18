@@ -104,7 +104,7 @@ finishedBtn.addEventListener("click", resetEverything);
 function updateMotivationWithAffirmation() {
   // Using a CORS proxy
   const proxyUrl = 'https://spencer-damiano.github.io/cse121b/project.html';
-  const apiUrl = 'https://zenquotes.io/api/quotes/';
+  const apiUrl = 'https://zenquotes.io/api/random/';
 
   fetch(proxyUrl + apiUrl, {
     headers: {
