@@ -103,7 +103,7 @@ finishedBtn.addEventListener("click", resetEverything);
 
 async function fetchQuotes() {
     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
-    var category = 'happiness'
+    var category = 'Education'
     const apiKey = 'pqqcRVpjzEAnU+zMgETonw==aMwpwysse9pcjMax';
     $.ajax({
         method: 'GET',
