@@ -120,7 +120,7 @@ function updateMotivationWithAffirmation() {
   })
   .then(data => {
     document.querySelectorAll('.motivation').forEach(element => {
-      element.textContent = data.affirmation;
+      element.textContent = data.q + ' - ' + data.a;
     });
   })
   .catch(error => {
