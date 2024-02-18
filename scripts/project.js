@@ -101,22 +101,23 @@ finishedBtn.addEventListener("click", resetEverything);
 // Function to fetch an affirmation and update the motivation text
 
 
-function fetchQuotes() {
+async function fetchQuotes() {
     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
-    fetch('https://api.fisenko.net/v1/quotes/en/random')
-      .then(response => {
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
+    var category = 'happiness'
+    const apiKey = await secret.txt();
+    $.ajax({
+        method: 'GET',
+        url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
+        headers: { 'X-Api-Key': apiKey},
+        contentType: 'application/json',
+        success: function(result) {
+            console.log(result);
+        },
+        error: function ajaxError(jqXHR) {
+            console.error('Error: ', jqXHR.responseText);
         }
-        return response.json();
-      })
-      .then(data => {
-        displayQuote(data); // Function to display the quote
-      })
-      .catch(error => {
-        console.error('There was a problem with your fetch operation:', error);
-      });
-  }
+    });
+}
   
   function displayQuote(quote) {
     // Assuming 'quote' object contains 'q' for quote text and 'a' for author name
@@ -125,7 +126,8 @@ function fetchQuotes() {
     const authorElement = document.querySelector('.quote-author'); // Adjust the class as needed
     
     // Update the text content of your elements
-    quoteElement.textContent = quote.text; // Display the quote text
-    authorElement.textContent = quote.author.name; // Display the author name
+    quoteElement.textContent = quote.quote; // Display the quote text
+    authorElement.textContent = quote.author; // Display the author name
   }
+
 
