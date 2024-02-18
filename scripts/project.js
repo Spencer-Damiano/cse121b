@@ -11,7 +11,7 @@ let countdownInterval; // Separate variable for countdown
 // Function to start the stopwatch
 function startStopwatch() {
   clearInterval(countdownInterval); // Ensure any existing countdown is stopped
-  updateMotivationWithAffirmation(); // Fetch a new affirmation
+  fetchQuotes(); // Fetch a new affirmation
   startTime = Date.now() - elapsedTime;
 
   timerInterval = setInterval(function() {
@@ -101,28 +101,34 @@ finishedBtn.addEventListener("click", resetEverything);
 // Function to fetch an affirmation and update the motivation text
 
 
-function updateMotivationWithAffirmation() {
-  const apiUrl = 'https://zenquotes.io/api/random/[your_key]';
-
-  fetch(apiUrl, {
-    headers: {
-      'Content-Type': 'application/json',
-      
-    },
-  })
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json();
-  })
-  .then(data => {
-    document.querySelectorAll('.motivation').forEach(element => {
-      element.textContent = data.q + ' - ' + data.a;
-    });
-  })
-  .catch(error => {
-    console.error('There was a problem with your fetch operation:', error);
-  });
-}
+function fetchQuotes() {
+    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
+    fetch('YOUR_API_ENDPOINT')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Assuming 'data' is an array of quotes
+        const randomIndex = Math.floor(Math.random() * data.length); // Get a random index
+        const quote = data[randomIndex]; // Select a random quote
+        displayQuote(quote); // Function to display the quote
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
+  }
+  
+  function displayQuote(quote) {
+    // Assuming 'quote' object contains 'q' for quote text and 'a' for author name
+    // Find the element(s) where you want to display the quote and author
+    const quoteElement = document.querySelector('.quote-text'); // Adjust the class as needed
+    const authorElement = document.querySelector('.quote-author'); // Adjust the class as needed
+    
+    // Update the text content of your elements
+    quoteElement.textContent = quote.q; // Display the quote text
+    authorElement.textContent = quote.a; // Display the author name
+  }
 
