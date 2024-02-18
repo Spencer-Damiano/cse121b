@@ -118,6 +118,7 @@ async function fetchQuotes() {
 
         const result = await response.json();
         console.log(result);
+        displayQuote(result[0]);
     } catch (error) {
         console.error('Error: ', error);
     }
