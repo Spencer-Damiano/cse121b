@@ -102,21 +102,25 @@ finishedBtn.addEventListener("click", resetEverything);
 
 
 async function fetchQuotes() {
-    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
-    var category = 'Education'
+    var category = 'Education';
     const apiKey = 'pqqcRVpjzEAnU+zMgETonw==aMwpwysse9pcjMax';
-    $.ajax({
-        method: 'GET',
-        url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
-        headers: { 'X-Api-Key': apiKey},
-        contentType: 'application/json',
-        success: function(result) {
-            console.log(result);
-        },
-        error: function ajaxError(jqXHR) {
-            console.error('Error: ', jqXHR.responseText);
+
+    try {
+        const response = await fetch(`https://api.api-ninjas.com/v1/quotes?category=${category}`, {
+            method: 'GET',
+            headers: { 'X-Api-Key': apiKey },
+            contentType: 'application/json'
+        });
+
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
         }
-    });
+
+        const result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.error('Error: ', error);
+    }
 }
   
   function displayQuote(quote) {
