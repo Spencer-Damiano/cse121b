@@ -70,6 +70,10 @@ function formatTime(time) {
   
     // Format the time as HH:MM:SS
     timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+
+    if (time === 0) {
+        timer.textContent = "00:00.00";
+    }
 }
 
 // Initial event listener for the study button click
