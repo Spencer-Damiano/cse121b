@@ -102,11 +102,9 @@ finishedBtn.addEventListener("click", resetEverything);
 
 
 function updateMotivationWithAffirmation() {
-  // Using a CORS proxy
-  const proxyUrl = 'https://spencer-damiano.github.io/cse121b/project.html';
-  const apiUrl = 'https://zenquotes.io/api/random/';
+  const apiUrl = 'https://zenquotes.io/api/[mode]/[key]?option1=value&option2=value';
 
-  fetch(proxyUrl + apiUrl, {
+  fetch(apiUrl, {
     headers: {
       'Content-Type': 'application/json',
       // Optionally, you might need to add the proxy's required headers here
