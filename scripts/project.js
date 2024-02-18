@@ -102,12 +102,12 @@ finishedBtn.addEventListener("click", resetEverything);
 
 
 function updateMotivationWithAffirmation() {
-  const apiUrl = 'https://zenquotes.io/api/[mode]/[key]?option1=value&option2=value';
+  const apiUrl = 'https://zenquotes.io/api/random/[your_key]';
 
   fetch(apiUrl, {
     headers: {
       'Content-Type': 'application/json',
-      // Optionally, you might need to add the proxy's required headers here
+      
     },
   })
   .then(response => {
