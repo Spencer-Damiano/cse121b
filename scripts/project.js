@@ -11,7 +11,7 @@ let countdownInterval; // Separate variable for countdown
 // Function to start the stopwatch
 function startStopwatch() {
   clearInterval(countdownInterval); // Ensure any existing countdown is stopped
-  fetchQuotes(); // Fetch a new affirmation
+  // fetchQuotes(); // Fetch a new affirmation
   startTime = Date.now() - elapsedTime;
 
   timerInterval = setInterval(function() {
@@ -34,7 +34,7 @@ function stopStopwatchAndStartCountdown() {
 
 // Function to start the countdown
 function startCountdown() {
-  let countdownTime = elapsedTime/5;
+  let countdownTime = elapsedTime % 5;
 
   countdownInterval = setInterval(function() {
     countdownTime -= 100;
@@ -65,7 +65,7 @@ function formatTime(time) {
   const minutes = Math.floor((time % 3600000) / 60000);
   const seconds = Math.floor((time % 60000) / 1000);
   const milliseconds = time % 1000;
-  timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(3, '0')}`;
+  timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
 }
 
 // Initial event listener for the study button click
@@ -104,7 +104,7 @@ finishedBtn.addEventListener("click", resetEverything);
 async function fetchQuotes() {
     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
     var category = 'happiness'
-    const apiKey = await secret.txt();
+    const apiKey = 'pqqcRVpjzEAnU+zMgETonw==aMwpwysse9pcjMax';
     $.ajax({
         method: 'GET',
         url: 'https://api.api-ninjas.com/v1/quotes?category=' + category,
