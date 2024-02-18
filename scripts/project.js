@@ -102,26 +102,24 @@ finishedBtn.addEventListener("click", resetEverything);
 
 
 function fetchQuotes() {
-  fetch('https://www.affirmations.dev')
-  .then(response => {
-    if (!response.ok) {
-      throw new Error('Network response was not ok');
-    }
-    return response.json(); // Convert the response to JSON
-  })
-  .then(data => {
-    // Extract the affirmation from the response data
-    const motivationText = data.affirmation;
-
-    // Find the element(s) with the class 'motivation' and update its text
-    document.querySelectorAll('.motivation').forEach(element => {
-      element.textContent = motivationText;
-    });
-  })
-  .catch(error => {
-    console.error('There was a problem with your fetch operation:', error);
-  });
-}
+    // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
+    fetch('https://zenquotes.io/api/random/')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.json();
+      })
+      .then(data => {
+        // Assuming 'data' is an array of quotes
+        const randomIndex = Math.floor(Math.random() * data.length); // Get a random index
+        const quote = data[randomIndex]; // Select a random quote
+        displayQuote(quote); // Function to display the quote
+      })
+      .catch(error => {
+        console.error('There was a problem with your fetch operation:', error);
+      });
+  }
   
   function displayQuote(quote) {
     // Assuming 'quote' object contains 'q' for quote text and 'a' for author name
