@@ -38,7 +38,7 @@ function startCountdown() {
 
   countdownInterval = setInterval(function() {
     countdownTime -= 100;
-    formatTime(countdownTime);
+    
 
     if (countdownTime <= 5000) {
       timer.style.color = 'red';
@@ -50,7 +50,9 @@ function startCountdown() {
       timer.style.color = 'gray';
       resetTimer();
       studyBtn.style.display = ""; // Show the button again
+
     }
+    formatTime(countdownTime);
   }, 100);
 }
 
@@ -62,10 +64,12 @@ function resetTimer() {
 }
 
 function formatTime(time) {
-  const minutes = Math.floor((time % 3600000) / 60000);
-  const seconds = Math.floor((time % 60000) / 1000);
-  const milliseconds = time % 1000;
-  timer.textContent = `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}.${milliseconds.toString().padStart(2, '0')}`;
+    const hours = Math.floor(time / 3600000); // Calculate total hours
+    const minutes = Math.floor((time % 3600000) / 60000); // Calculate total minutes within the remaining hour
+    const seconds = Math.floor((time % 60000) / 1000); // Calculate total seconds within the remaining minute
+  
+    // Format the time as HH:MM:SS
+    timer.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
 }
 
 // Initial event listener for the study button click
@@ -84,7 +88,7 @@ function resetEverything() {
   elapsedTime = 0;
   
   // Reset the timer display to show 00:00.000 or your preferred reset state
-  timer.textContent = "00:00.000";
+  timer.textContent = "00:00.00";
   timer.style.color = ''; // Reset color to default
 
   // Show the start button if it was hidden and set its text and event listeners correctly
