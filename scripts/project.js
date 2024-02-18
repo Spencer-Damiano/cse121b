@@ -11,7 +11,7 @@ let countdownInterval; // Separate variable for countdown
 // Function to start the stopwatch
 function startStopwatch() {
   clearInterval(countdownInterval); // Ensure any existing countdown is stopped
-  // fetchQuotes(); // Fetch a new affirmation
+  fetchQuotes(); // Fetch a new affirmation
   startTime = Date.now() - elapsedTime;
 
   timerInterval = setInterval(function() {
