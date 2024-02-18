@@ -34,7 +34,7 @@ function stopStopwatchAndStartCountdown() {
 
 // Function to start the countdown
 function startCountdown() {
-  let countdownTime = elapsedTime % 5;
+  let countdownTime = elapsedTime / 5;
 
   countdownInterval = setInterval(function() {
     countdownTime -= 100;
