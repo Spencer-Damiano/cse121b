@@ -103,7 +103,7 @@ finishedBtn.addEventListener("click", resetEverything);
 
 function fetchQuotes() {
     // Replace 'YOUR_API_ENDPOINT' with the actual endpoint URL
-    fetch('https://zenquotes.io/api/random/')
+    fetch('https://api.fisenko.net/v1/quotes/en/random')
       .then(response => {
         if (!response.ok) {
           throw new Error('Network response was not ok');
@@ -111,10 +111,7 @@ function fetchQuotes() {
         return response.json();
       })
       .then(data => {
-        // Assuming 'data' is an array of quotes
-        const randomIndex = Math.floor(Math.random() * data.length); // Get a random index
-        const quote = data[randomIndex]; // Select a random quote
-        displayQuote(quote); // Function to display the quote
+        displayQuote(data); // Function to display the quote
       })
       .catch(error => {
         console.error('There was a problem with your fetch operation:', error);
@@ -128,7 +125,7 @@ function fetchQuotes() {
     const authorElement = document.querySelector('.quote-author'); // Adjust the class as needed
     
     // Update the text content of your elements
-    quoteElement.textContent = quote.q; // Display the quote text
-    authorElement.textContent = quote.a; // Display the author name
+    quoteElement.textContent = quote.text; // Display the quote text
+    authorElement.textContent = quote.author.name; // Display the author name
   }
 
